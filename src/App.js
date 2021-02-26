@@ -6,7 +6,7 @@ class App extends Component {
     super(props);
     this.state = {
       title: "",
-      todos: []
+      todos: [],
     };
   }
 
@@ -35,8 +35,22 @@ class App extends Component {
       .catch((err) => {
         console.log(err);
       });
-
   };
+
+  componentDidMount() {
+    axios({
+      method: "GET",
+      url: "http://127.0.0.1:5000/api/get-all-todos",
+    })
+      .then((res) => {
+        this.setState({
+          todos: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   render() {
     return (
