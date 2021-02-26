@@ -2,11 +2,6 @@
 
 # Components: 
 
-- Todo-Form
-  - form
-    - input
-    - button
-
 - Todo-Item:
   - checkbox
   - item name
@@ -16,6 +11,5 @@
   - button to delete all items
 
 - State:
-  - title -> string
   - done -> boolean
   - todos -> array
