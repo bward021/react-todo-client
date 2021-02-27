@@ -43,7 +43,9 @@ class App extends Component {
       url: `http://127.0.0.1:5000/api/delete-todo/${id}`,
     })
       .then((res) => {
-        console.log(res);
+        this.setState({
+          todos: this.state.todos.filter(todo => {return todo.id !== id})
+        })
       })
       .catch((err) => {
         console.log(err);
