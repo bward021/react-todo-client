@@ -34,3 +34,8 @@
   color: black;
   text-decoration: line-through;
 }
+
+.main-spinner{
+  margin: 20px;
+  font-size: 1.75em;
+}
