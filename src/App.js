@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 import TodoItem from "./components/todo-item";
 import { API_URL } from "./api/api";
@@ -13,7 +13,7 @@ class App extends Component {
       title: "",
       todos: [],
       isLoading: true,
-      isSubmitting: false
+      isSubmitting: false,
     };
   }
 
@@ -25,8 +25,8 @@ class App extends Component {
 
   handleSubmit = (e) => {
     this.setState({
-      isSubmitting: true
-    })
+      isSubmitting: true,
+    });
     e.preventDefault();
     axios({
       method: "POST",
@@ -34,19 +34,18 @@ class App extends Component {
       data: {
         title: this.state.title,
         done: false,
-        
       },
     })
       .then((res) => {
         this.setState({
           todos: [res.data, ...this.state.todos],
           title: "",
-          isSubmitting: false
+          isSubmitting: false,
         });
       })
       .catch((err) => {
         this.setState({
-          isSubmitting: false
+          isSubmitting: false,
         });
         console.log(err);
       });
@@ -59,8 +58,10 @@ class App extends Component {
     })
       .then((res) => {
         this.setState({
-          todos: this.state.todos.filter(todo => {return todo.id !== id})
-        })
+          todos: this.state.todos.filter((todo) => {
+            return todo.id !== id;
+          }),
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -70,11 +71,7 @@ class App extends Component {
   renderTodos() {
     return this.state.todos.map((todo) => {
       return (
-       <TodoItem 
-        key={todo.id}
-        todo={todo}
-        handleDelete={this.handleDelete}  
-       />
+        <TodoItem key={todo.id} todo={todo} handleDelete={this.handleDelete} />
       );
     });
   }
@@ -87,7 +84,7 @@ class App extends Component {
       .then((res) => {
         this.setState({
           todos: res.data,
-          isLoading: false
+          isLoading: false,
         });
       })
       .catch((err) => {
@@ -107,12 +104,22 @@ class App extends Component {
             onChange={this.handleChange}
             value={this.state.title}
           />
-          {this.state.isSubmitting ? <FontAwesomeIcon icon={faSpinner} spin /> : 
-          <button disabled={this.state.isSubmitting} type="submit">Add</button>}
+          <button disabled={this.state.isSubmitting} type="submit">
+            {this.state.isSubmitting ? (
+              <FontAwesomeIcon icon={faSpinner} spin />
+            ) : (
+              "Add"
+            )}
+          </button>
         </form>
-        {this.state.isSubmitting ? <FontAwesomeIcon icon={faSpinner} spin /> : null}
-        {this.state.isLoading ? <FontAwesomeIcon icon={faSpinner} className="main-spinner" spin />
-        : this.renderTodos()}
+        {this.state.isSubmitting ? (
+          <FontAwesomeIcon icon={faSpinner} spin />
+        ) : null}
+        {this.state.isLoading ? (
+          <FontAwesomeIcon icon={faSpinner} className="main-spinner" spin />
+        ) : (
+          this.renderTodos()
+        )}
       </div>
     );
   }

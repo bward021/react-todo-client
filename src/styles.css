@@ -28,9 +28,21 @@
 .todo-item {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 80%;
 }
+
+.delete-button{
+  color: antiquewhite;
+  background-color: transparent;
+  outline: none;
+  transition: 0.25s ease-in-out;
+}
+.delete-button:hover{
+  color: #af040f;
+  background-color: antiquewhite;
+}
+
 .done {
   color: black;
   text-decoration: line-through;
