@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import TodoItem from "./components/todo-item";
+import { API_URL } from "./api/api";
 
 class App extends Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class App extends Component {
     e.preventDefault();
     axios({
       method: "POST",
-      url: "https://bw-flask-todo-api.herokuapp.com/api/add-todo",
+      url: `${API_URL}/add-todo`,
       data: {
         title: this.state.title,
         done: false,
@@ -41,7 +42,7 @@ class App extends Component {
   handleDelete = (id) => {
     axios({
       method: "DELETE",
-      url: `https://bw-flask-todo-api.herokuapp.com/api/delete-todo/${id}`,
+      url: `${API_URL}/delete-todo/${id}`,
     })
       .then((res) => {
         this.setState({
@@ -66,9 +67,10 @@ class App extends Component {
   }
 
   componentDidMount() {
+    console.log(API_URL);
     axios({
       method: "GET",
-      url: "https://bw-flask-todo-api.herokuapp.com/api/get-all-todos",
+      url: `${API_URL}/get-all-todos`,
     })
       .then((res) => {
         this.setState({
