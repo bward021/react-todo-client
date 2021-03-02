@@ -10,7 +10,7 @@ export default class TodoItem extends Component {
   }
 
   handleDone = () => {
-    fetch(`${API_URL}/${this.props.todo.id}`, {
+    fetch(`${API_URL}/edit-done/${this.props.todo.id}`, {
       method: "PATCH",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
